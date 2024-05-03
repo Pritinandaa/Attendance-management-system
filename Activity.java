@@ -3,17 +3,21 @@ package staff;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Activity extends JFrame {
+public class Activity extends JFrame implements ActionListener {
     JLabel lbltime;
     JLabel Date,Section,Subject,Activity,Department,Topic;
     JTextField tftime;
-    JButton Update,Acti;
-    Activity()
+    String username;
+    JButton Update,Acti, back;
+    Activity(String username)
     {
+        this.username = username;
         getContentPane().setBackground(Color.WHITE);
 
 
@@ -30,6 +34,13 @@ public class Activity extends JFrame {
         panel.setBounds(0, 0, 800, 50);
         panel.setBackground(new Color(29, 59, 85));
         add(panel);
+
+        ImageIcon i2 = new ImageIcon(ClassLoader.getSystemResource("staff/images/Imitlogo.png"));
+        Image ima =i2.getImage().getScaledInstance(100, 50, Image.SCALE_DEFAULT);
+        ImageIcon imaicon2 = new ImageIcon(ima);
+        JLabel image1 = new JLabel(imaicon2);
+        image1.setBounds(600, 0, 100, 50);
+        panel.add(image1);
 
         Activity = new JLabel("Activity");
         Activity.setBounds(0, 250, 800, 150);
@@ -122,16 +133,25 @@ public class Activity extends JFrame {
         Update.setBackground(new Color(29,75,100));
         Update.setForeground(Color.WHITE);
         Update.setBorder(new LineBorder(new Color(29,75,100)));
-//        Update.addActionListener(this);
+        Update.addActionListener(this);
         add(Update);
 
        Acti = new JButton("Add Another Activity");
-        Acti.setBounds(400, 500, 150, 40);
+        Acti.setBounds(200, 500, 150, 40);
         Acti.setBackground(new Color(29,75,100));
         Acti.setForeground(Color.WHITE);
         Acti.setBorder(new LineBorder(new Color(29,75,100)));
+        Acti.addActionListener(this);
         add( Acti);
 
+
+        back = new JButton("Back");
+        back.setBounds(400, 500, 150, 40);
+        back.setBackground(new Color(29,75,100));
+        back.setForeground(Color.WHITE);
+        back.setBorder(new LineBorder(new Color(29,75,100)));
+        back.addActionListener(this);
+        add( back);
         // Create calendar to choose date
 //        JCalendar calendar;
 //        calendar = new JCalendar();
@@ -148,9 +168,24 @@ public class Activity extends JFrame {
         // Add the panel to the frame
 //        frame.add(panel);
 //        frame.setVisible(true);
+        String date=timeField.getText();
+        Object department=departmentDropdown.getSelectedItem();
+        Object section = sectionDropdown.getSelectedItem();
+        Object subject = subjectDropdown.getSelectedItem();
         setVisible(true);
+
     }
+
     public static void main(String[] args){
-        new Activity();
+        new Activity("");
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == back){
+            new Home(username);
+        }else if(e.getSource() == Update){
+            //update kale kou table re store haba
+
+        }
     }
 }
