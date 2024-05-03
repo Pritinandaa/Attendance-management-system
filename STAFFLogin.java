@@ -29,12 +29,12 @@ public class STAFFLogin extends JFrame implements ActionListener{
         jpanel.setBounds(0, 0, 400, 400);
         add(jpanel);
 
-//        ImageIcon imageicon = new ImageIcon(ClassLoader.getSystemResource("staffattendance1/images/STAFFLogin.jpg"));
-//        Image image = imageicon.getImage().getScaledInstance(375, 375, Image.SCALE_DEFAULT);
-//        ImageIcon imageicon2 = new ImageIcon(image);
-//        JLabel jlabel = new JLabel(imageicon2);
-//        jlabel.setBounds(90, 120, 200, 200);
-//        jpanel.add(jlabel);
+        ImageIcon imageicon = new ImageIcon(ClassLoader.getSystemResource("staff/images/STAFFLogin.jpg"));
+        Image image = imageicon.getImage().getScaledInstance(375, 375, Image.SCALE_DEFAULT);
+        ImageIcon imageicon2 = new ImageIcon(image);
+        JLabel jlabel = new JLabel(imageicon2);
+        jlabel.setBounds(90, 120, 200, 200);
+        jpanel.add(jlabel);
 
         JPanel jpanel2 = new JPanel();
         jpanel2.setLayout(null);
@@ -96,7 +96,7 @@ public class STAFFLogin extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent ae) {
 
         if (ae.getSource() == login){
-            setVisible(false);
+
             name = tfusername.getText();
             String query = "select * from staff where Name = '" + name + "'";
             connectionclass c = new connectionclass();
@@ -109,17 +109,19 @@ public class STAFFLogin extends JFrame implements ActionListener{
                 if(password.equals(pass)){
                     new LoadingPage(name);
                 }else{
+
                     JOptionPane.showMessageDialog(null, "Wrong username or password.");
-                }
+//
+                }//sbuthire back button acha ok wait
             }catch(Exception e){
                 e.printStackTrace();
             }
 
         } else{
 
-//                setVisible(false);
-//                new SelectBranch();
-            // new MainPage();
+                setVisible(false);
+                new SelectBranch();
+//             new MainPage();
         }
 
     }
