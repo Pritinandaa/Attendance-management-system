@@ -6,7 +6,7 @@ import java.net.Socket;
 
 public class AttendanceServer {
 
-    private static final String[] ALLOWED_IPS = {"172.25.160.1", "192.168.91.80"};
+    private static final String[] ALLOWED_IPS = {"192.168.1.5", "192.168.91.80"};
 
     public static void main(String[] args) {
         try (ServerSocket serverSocket = new ServerSocket(8888)) {
